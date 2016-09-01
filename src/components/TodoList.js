@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 import { Modal, Button } from 'react-bootstrap';
+import { RaisedButton, FontIcon } from 'material-ui';
+// import FontIcon from 'material-ui/FontIcon';
+
+const iconStyles = {
+  marginRight: 24,
+};
 
 export default class TodoList extends Component {
   constructor(){
@@ -46,7 +52,7 @@ export default class TodoList extends Component {
       return (
         <li key={index} onDoubleClick={this._delete.bind(null, todo.id)}>
         {todo.task}
-        <button className="btn btn-warning" onClick={this._openModal.bind(null, todo.id, todo.task)}>Edit</button>
+        <FontIcon className="material-icons" style={iconStyles} onClick={this._openModal.bind(null, todo.id, todo.task)}>edit</FontIcon>
         </li>
       )
     })
@@ -56,20 +62,20 @@ export default class TodoList extends Component {
           {Todos}
         </ol>
         <Modal show={this.state.showModal} onHide={this._closeModal}>
-          <form onSubmit={this._edit}>
-            <Modal.Header closeButton>
-              <Modal.Title>Edit Profile</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <input type="text" value={this.state.todoText} onChange={this._onInputChange}/>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button className="btn btn-success" type="submit">Save</Button>
-              <Button onClick={this._closeModal}>Close</Button>
-            </Modal.Footer>
-          </form>
+        <form onSubmit={this._edit}>
+        <Modal.Header closeButton>
+        <Modal.Title>Edit Profile</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <input type="text" value={this.state.todoText} onChange={this._onInputChange}/>
+        </Modal.Body>
+        <Modal.Footer>
+        <Button className="btn btn-success" type="submit">Save</Button>
+        <Button onClick={this._closeModal}>Close</Button>
+        </Modal.Footer>
+        </form>
         </Modal>
-      </div>
+        </div>
     )
   }
 }

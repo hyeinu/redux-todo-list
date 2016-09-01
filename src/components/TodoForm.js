@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import { RaisedButton, TextField } from 'material-ui';
+
+const style = {
+  margin: 12,
+};
 
 export default class TodoForm extends Component {
   constructor(){
@@ -14,7 +19,7 @@ export default class TodoForm extends Component {
     e.preventDefault();
 
     let { task } = this.state
-    this.props.createTodo({task})
+    this.props.createTodo( {task} )
 
     this.setState({
       task: ''
@@ -29,8 +34,14 @@ export default class TodoForm extends Component {
     let { task } = this.state
     return(
       <form onSubmit={this._onSubmit}>
-        <input type="text" value={task} onChange={this._onInputChange}/>
-        <button className="btn btn-primary">Add</button>
+        <TextField
+         hintText="ex: Do Homework"
+         floatingLabelText="Add a Task"
+         floatingLabelFixed={false}
+         onChange={this._onInputChange}
+         value={task}
+          />
+        <RaisedButton label="Add" type="submit" primary={true} style={style}  />
       </form>
     )
   }
