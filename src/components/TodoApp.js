@@ -12,6 +12,7 @@ import TodoForm from './TodoForm'
 class TodoApp extends Component {
   render() {
     let { todos, createTodo, deleteTodo, editTodo } = this.props;
+    localStorage.todos = JSON.stringify(todos)
     let TodoList = todos.map((todo, index) => <TodoItem key={index} todo={todo} editTodo={this.props.editTodo} deleteTodo={this.props.deleteTodo} />)
 
     return (

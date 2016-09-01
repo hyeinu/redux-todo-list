@@ -1,5 +1,10 @@
+try {
+  var todos = JSON.parse(localStorage.todos)
+} catch(err){
+  var todos = []
+}
 
-export default function todos(state = [], action){
+export default function todos(state = todos, action){
   switch(action.type){
     case 'CREATE_TODO':
       return state.concat(action.payload.todo);
@@ -20,4 +25,5 @@ export default function todos(state = [], action){
     default:
       return state;
   }
+  localStorage.todos = JSON.stringify(state)
 }
